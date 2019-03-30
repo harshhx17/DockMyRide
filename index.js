@@ -10,24 +10,38 @@ let buyerModel = require('./models/buyerModel.js')
 const bodyParser = require('body-parser');
 app.use(bodyParser());
 app.set('view engine', 'ejs');
-app.get('/',(req, res) => {
-    res.render('home');
+app.get('/',(req,res) =>{
+	res.render('userlogin');
 });
-app.post('/submit',(req, res) => {
-    dockerModel.insert(req, res);
+app.post('/login_seller',(req, res) => {
+    sellerModel.authenticate(req.body['email'], req.body['passwd'])
+    .then((user) => {
+        userData = user;
+        res.render('addDocker',{'user':userData});
+    })
 })
-app.get('/seller',(req, res) => {
-    res.render('seller');
+app.post('/login_buyer',(req, res) => {
+   	buyerModel.authenticate(req.body['email'], req.body['passwd'])
+   	.then((user) => {
+        userData = user;
+        res.render('market',{'user':userData});
+    })
 });
-
+app.get('/login_seller',(req, res) => {
+    res.render('userlogin');
+});
+app.get('/login_buyer',(req, res) => {
+    res.render('userlogin');
+});
 app.post('/sel',(req, res) => {
     sellerModel.insert(req, res);
-})
-app.get('/buyer',(req, res) => {
-    res.render('buyer');
 });
 
 app.post('/buy',(req, res) => {
+    buyerModel.insert(req, res);
+})
+
+app.post('/register',(req, res) => {
     buyerModel.insert(req, res);
 })
 

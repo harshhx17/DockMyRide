@@ -28,5 +28,29 @@ sellerModel.insert = function(req,res) {
     });
     }
 
+sellerModel.authenticate = (mail, password) => {
+    return new Promise((resolve, reject) => {
+        fetch('https://supradock.herokuapp.com/v1alpha1/graphql', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({query:'{seller(where: {_and: [{mail: { _eq : "'+mail + '"}},{password: {_eq: "'+ password + '"}}]}) {id}}'})
+    })
+    .then(r => r.json())
+    .then(data => {
+        if(data['data']['seller'][0]['id'] != undefined){
+            console.log(data['data']['seller'][0]);
+            var user = {'id': data['data']['seller'][0]['id'] - 1 , 'name': mail}
+            resolve(user);
+        }
+        else{
+            reject("Wrong Password");
+        }
+    });
+    });
+}
+
 
 module.exports = sellerModel;

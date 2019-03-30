@@ -26,7 +26,31 @@ buyerModel.insert = function(req,res) {
             res.send("Error: "+ err);
         })           
     });
-    }
+}
+
+buyerModel.authenticate = (mail, password) => {
+    return new Promise((resolve, reject) => {
+        fetch('https://supradock.herokuapp.com/v1alpha1/graphql', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({query:'{buyer(where: {_and: [{mail: { _eq : "'+mail + '"}},{password: {_eq: "'+ password + '"}}]}) {id, name}}'})
+    })
+    .then(r => r.json())
+    .then(data => {
+        if(data['data']['buyer'][0]['id'] != undefined){
+            console.log(data['data']['buyer'][0]);
+            var user = {'id': data['data']['buyer'][0]['id'] - 1 , 'name': data['data']['buyer'][0]['name']}
+            resolve(user);
+        }
+        else{
+            reject("Wrong Password");
+        }
+    });
+    });
+}
 
 
 module.exports = buyerModel;

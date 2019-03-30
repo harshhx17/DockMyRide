@@ -13,7 +13,6 @@ app.set('view engine', 'ejs');
 app.get('/',(req, res) => {
     res.render('home');
 });
-
 app.post('/submit',(req, res) => {
     dockerModel.insert(req, res);
 })

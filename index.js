@@ -5,6 +5,7 @@ const port = 3001
 // let departmentController = require('./controller/departmentController.js')
 let dockerModel = require('./models/dockerModel.js')
 let sellerModel = require('./models/sellerModel.js')
+let buyerModel = require('./models/buyerModel.js')
 
 const bodyParser = require('body-parser');
 app.use(bodyParser());
@@ -22,6 +23,13 @@ app.get('/seller',(req, res) => {
 
 app.post('/sel',(req, res) => {
     sellerModel.insert(req, res);
+})
+app.get('/buyer',(req, res) => {
+    res.render('buyer');
+});
+
+app.post('/buy',(req, res) => {
+    buyerModel.insert(req, res);
 })
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))

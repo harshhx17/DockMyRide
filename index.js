@@ -41,8 +41,8 @@ app.post('/buy',(req, res) => {
     buyerModel.insert(req, res);
 })
 
-app.post('/register',(req, res) => {
-    buyerModel.insert(req, res);
+app.get('/register',(req, res) => {
+    res.render('register');
 })
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))

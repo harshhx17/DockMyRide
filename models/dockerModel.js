@@ -41,7 +41,7 @@ dockerModel.fetchAll = function(){
     .then(r => r.json())
     .then(data => {
         if(data['data']['docker_details'][0] != undefined){
-            console.log(data['data']['docker_details']);
+            // console.log(data['data']['docker_details']);
             var docker = {'dockers': data['data']['docker_details']}
             resolve(docker);
         }

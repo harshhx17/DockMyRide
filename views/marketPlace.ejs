@@ -1,0 +1,259 @@
+<!-- <div class="button-container">
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='1' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='2' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='3' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='4' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='5' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='6' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='7' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='8' class="button">Get container and deploy</div>
+	</div>
+	<div class="box">
+		<p>Get 4 GB of RAM at minimal costs and trusted deployment</p>
+		<div id='9' class="button">Get container and deploy</div>
+	</div>
+</div> -->
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+.lt-pricing {
+  margin: 50px auto;
+}
+.lt-pricing .fine-print p {
+  color: #999;
+  font-style: italic;
+  padding: 15px;
+}
+
+.pricing-header {
+  background: #ddd;
+}
+.pricing-header .price-box {
+  background: #333;
+  color: #fff;
+}
+.pricing-header h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin: 0;
+  padding: 10px 0;
+  text-transform: uppercase;
+}
+
+.pricing-row {
+  background: #ddd;
+  overflow: hidden;
+  position: relative;
+  transition: all .2s ease;
+  z-index: 1;
+}
+@media (max-width: 700px) {
+  .pricing-row {
+    margin-bottom: 45px;
+  }
+}
+.pricing-row .title {
+  background: rgba(8, 42, 59, 0.5);
+  border-bottom: 1px solid #ddd;
+  color: #fff;
+  font-size: 1.25rem;
+  margin: -10px -25px 0;
+  padding: 20px;
+  text-transform: uppercase;
+}
+.pricing-row .price {
+  /*font-size: 4.5rem;*/
+  padding-top: 10px;
+}
+.pricing-row .tenure {
+  font-size: 1.15rem;
+}
+.pricing-row .addition-info {
+  color: #fff;
+  font-size: 1rem;
+  font-style: italic;
+  margin-top: -5px;
+  padding-top: 0;
+}
+.pricing-row .premium-item {
+  color: #168fce;
+}
+.pricing-row .price-box {
+  background: #ddd;
+  color: #fff;
+  overflow: hidden;
+  padding: 25px;
+  position: relative;
+  text-align: center;
+  transition: color 0.3s;
+  vertical-align: top;
+  z-index: 10;
+}
+.pricing-row .price-box .price {
+  color: #168fce;
+}
+.pricing-row .price-box:before {
+  background: #168fce;
+  content: '';
+  left: 0;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transform: translate3d(0, 150%, 0);
+  transform: translate3d(0, 150%, 0);
+  transition: all 0.3s ease;
+  width: 100%;
+  z-index: -1;
+}
+.pricing-row.premium .price-box {
+  background: #002d43;
+}
+.pricing-row.combo .price-box {
+  background: #004F76;
+}
+.pricing-row.life-support .price-box {
+  background: #5eb7e3;
+}
+.pricing-row.edge-support .price-box {
+  background: #8cd1f2;
+}
+.pricing-row .price-features {
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+@media (max-width: 700px) {
+  .pricing-row .price-features {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 700px) {
+  .pricing-row .price-features:last-child {
+    padding-bottom: 25px;
+    padding-top: 0;
+  }
+}
+.pricing-row ul {
+  margin-bottom: 0;
+  padding-left: 25px;
+}
+.pricing-row ul li {
+  list-style: bullet;
+}
+.pricing-row:nth-child(2n) {
+  background: #f4f4f4;
+}
+.pricing-row:hover, .pricing-row:focus {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+  box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+  transform: scale(1.04);
+  transition: all .3s ease;
+  z-index: 100 !important;
+}
+.pricing-row:hover .price-box, .pricing-row:focus .price-box {
+  color: #fff;
+  z-index: 125;
+}
+.pricing-row:hover .price-box .price, .pricing-row:focus .price-box .price {
+  color: #fff;
+}
+.pricing-row:hover .price-box:before, .pricing-row:focus .price-box:before {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s ease;
+}
+
+</style>
+
+<div class="lt-pricing row">
+  <div class="row pricing-header hide-for-small-only">
+    <div class="price-box medium-4 column">
+      <h3>Subscription</h3>
+    </div>
+
+    <div class="price-features medium-8 column">
+      <h3>Features</h3>
+    </div>
+  </div>
+      
+ <% for (var i=0; i < data.dockers.length; i++) { %>     
+  <div class="pricing-row row premium" data-equalizer="premium" data-options="equalize_on_stack: false">
+    <div class="price-box medium-4 column" data-equalizer-watch="premium">      
+		<h3><%= data.dockers[i].ram %></h3>
+    <h3><%= data.dockers[i].duration %></h3>
+    <h3><%= data.dockers[i].duration_from %></h3>
+    <h3><%= data.dockers[i].duration_till %></h3>
+    <h3><%= data.dockers[i].container_id %></h3>
+    <h3><%= data.dockers[i].cost %></h3>
+    <h3><%= data.dockers[i].stake %></h3>
+    <button class='selector-button' id='<%= i %>'>Select server</button>
+    </div>
+  </div>
+ <% } %>
+
+ <script>
+   document.getElementsByClassName('selector-button').addEventListener('click', function() {
+    let id = this.getAttribute('id')
+    var data = JSON.stringify({
+    "name": "complainClassifier",
+    "context": {
+      "port": "3000"
+    },
+      "url": "https://github.com/supra08/complainClassifier.git"
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "http://localhost:8080/app");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.setRequestHeader("Postman-Token", "11fcce2d-f4ad-4560-bb2b-d2348a303e29");
+
+    xhr.send(data); 
+     })
+ </script>
+
+
+ 	

@@ -1,0 +1,116 @@
+<style type="text/css">
+	html,
+body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4CAF50;
+}
+body {
+  overflow: hidden;
+}
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.modalbox.success,
+.modalbox.error {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: #fff;
+  padding: 25px 25px 15px;
+  text-align: center;
+}
+.modalbox.success h1,
+.modalbox.error h1 {
+  font-family: 'Montserrat', sans-serif;
+}
+.modalbox.success p,
+.modalbox.error p {
+  font-family: 'Open Sans', sans-serif;
+}
+.modalbox.success button,
+.modalbox.error button,
+.modalbox.success button:active,
+.modalbox.error button:active,
+.modalbox.success button:focus,
+.modalbox.error button:focus {
+  margin-top: 15px;
+  width: 80%;
+  background: transparent;
+  color: #4caf50;
+  border-color: #4caf50;
+  outline: none;
+}
+.modalbox.success button:hover,
+.modalbox.error button:hover,
+.modalbox.success button:active:hover,
+.modalbox.error button:active:hover,
+.modalbox.success button:focus:hover,
+.modalbox.error button:focus:hover {
+  color: #fff;
+  background: #4caf50;
+  border-color: transparent;
+}
+.modalbox.success .icon,
+.modalbox.error .icon {
+  position: relative;
+  margin: 0 auto;
+  margin-top: -75px;
+  background: #4caf50;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.modalbox.success .icon span,
+.modalbox.error .icon span {
+  postion: absolute;
+  font-size: 4em;
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
+}
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.center .change {
+  clearn: both;
+  display: block;
+  font-size: 10px;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<div class="background"></div>
+<div class="container">
+	<div class="row">
+		<div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+			<div class="icon">
+				<span class="glyphicon glyphicon-ok"></span>
+			</div>
+			<!--/.icon-->
+			<h1>Success!</h1>
+			<h2> Here is your hash: </h2>
+			<%= hash %>
+			<p>We've sent a confirmation to your e-mail
+				<br>for verification.</p>
+			<button type="button" class="redo btn">Ok</button>
+</div></div></div>
+<!--/.container-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+	$(".redo").click(function() {
+		$(".success, .error").toggle();
+	});
+});
+
+</script>

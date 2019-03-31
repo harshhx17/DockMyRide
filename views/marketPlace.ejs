@@ -15,6 +15,7 @@ body {
   display: inline-block;
   margin: 10px 1%;
   font-family: 'Lato', Arial, sans-serif;
+  border: solid #4caf50;
 }
 
 .plan-inner {
@@ -115,11 +116,11 @@ body {
     font-weight: 700;
 }
 .basic .entry-title {
-  background: #75DDD9;
+  background: #4caf50;
 }
 
 .basic .entry-title > h3 {
-  background: #44CBC6;
+  background: #3d8e40;
 }
 
 .basic .price {
@@ -127,15 +128,15 @@ body {
 }
 
 .standard .entry-title {
-  background: #4484c1;
+  background: #3d8e40;
 }
 
 .standard .entry-title > h3 {
-  background: #3772aa;
+  background: #3d8e40;
 }
 
 .standard .price {
-  background: #3772aa;
+  background: #3d8e40;
 }
 
 .ultimite .entry-title > h3 {
@@ -170,7 +171,7 @@ body {
         </ul>
       </div>
       <div class="btn">
-        <a id='<%= i %>'>Select server</a>
+        <button class="selector-button" id='<%= data.dockers[i].id %>'>Select server</button>
       </div>
     </div>
   </div>
@@ -205,32 +206,25 @@ body {
  <% } %> -->
 
  <script>
-   document.getElementsByClassName('selector-button').addEventListener('click', function() {
-    let id = this.getAttribute('id')
-    var data = JSON.stringify({
-    "name": "complainClassifier",
-    "context": {
-      "port": "3000"
-    },
-      "url": "https://github.com/supra08/complainClassifier.git"
-    });
+   for(var i=0;i< <%= data.dockers.length%>;i++){
+   document.getElementsByClassName('selector-button')[i].addEventListener('click', function() {
+      console.log(this);
+      let id = this.getAttribute('id');
+      fetch("http://172.20.54.158:8080/app", {
+        body: "{\n\t\"name\":\"complainClassifier\",\n\t\"context\": {\n\t\t\"port\": \"3000\"\n\t},\n\t\"url\": \"https://github.com/supra08/complainClassifier.git\"\n}",
+        headers: {
+          "Cache-Control": "no-cache",
+          "Content-Type": "application/json",
+          "Postman-Token": "65193d94-c8f7-4c22-ba5b-144ee76ca9b6"
+        },
+        method: "POST",
+        mode: "no-cors",
+      });
+      location.href = "/payment/?id=" + id;
 
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === 4) {
-        console.log(this.responseText);
-      }
-    });
-
-    xhr.open("POST", "http://localhost:8080/app");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("cache-control", "no-cache");
-    xhr.setRequestHeader("Postman-Token", "11fcce2d-f4ad-4560-bb2b-d2348a303e29");
-
-    xhr.send(data); 
-     })
+   })
+   }
  </script>
 
 

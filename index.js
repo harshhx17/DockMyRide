@@ -6,7 +6,7 @@ const port = 3001
 let dockerModel = require('./models/dockerModel.js')
 let sellerModel = require('./models/sellerModel.js')
 let buyerModel = require('./models/buyerModel.js')
-
+let transfer = require('./transfer.js')
 const bodyParser = require('body-parser');
 app.use(bodyParser());
 app.set('view engine', 'ejs');
@@ -17,14 +17,20 @@ app.post('/login_seller',(req, res) => {
     sellerModel.authenticate(req.body['email'], req.body['passwd'])
     .then((user) => {
         userData = user;
-        res.render('addDocker',{'user':userData});
+        return dockerModel.fetchAll();
     })
-})
+    .then((data) => {
+        res.render('addDocker',{'data':data, userData});
+    })
+});
 app.post('/login_buyer',(req, res) => {
    	buyerModel.authenticate(req.body['email'], req.body['passwd'])
    	.then((user) => {
         userData = user;
-        res.render('market',{'user':userData});
+        return dockerModel.fetchAll();
+    })
+    .then((data) => {
+        res.render('marketPlace',{'data':data, 'user':userData});
     })
 });
 app.get('/login_seller',(req, res) => {
@@ -33,6 +39,17 @@ app.get('/login_seller',(req, res) => {
 app.get('/login_buyer',(req, res) => {
     res.render('userlogin');
 });
+app.get('/payment',(req, res) => {
+	var id = req.query.id;
+    res.render('payment',{'id': id});
+});
+app.post('/pay',(req,res) => {
+	transfer.transact()
+	.then((hash) => {
+		hash=hash;
+		res.render('completed',{hash});
+	})
+})
 app.post('/sel',(req, res) => {
     sellerModel.insert(req, res);
 });

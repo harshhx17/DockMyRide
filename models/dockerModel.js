@@ -36,7 +36,7 @@ dockerModel.fetchAll = function(){
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({query:'{docker_details {ram, duration, duration_from, duration_till, container_id, cost, stake}}'})
+        body: JSON.stringify({query:'{docker_details {id,ram, duration, duration_from, duration_till, container_id, cost, stake}}'})
     })
     .then(r => r.json())
     .then(data => {

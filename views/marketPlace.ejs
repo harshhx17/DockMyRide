@@ -211,36 +211,49 @@ h3 {
     </div>
   </div>
       
+ <% for (var i=0; i < data.dockers.length; i++) { %>     
   <div class="pricing-row row premium" data-equalizer="premium" data-options="equalize_on_stack: false">
-    <div class="price-box medium-4 column" data-equalizer-watch="premium">
-      <h3 class="title">Premium Support</h3>
-      <h3 class="price">$1895<span class="tenure">/yr.</span></h3>
+    <div class="price-box medium-4 column" data-equalizer-watch="premium">      
+		<h3><%= data.dockers[i].ram %></h3>
+    <h3><%= data.dockers[i].duration %></h3>
+    <h3><%= data.dockers[i].duration_from %></h3>
+    <h3><%= data.dockers[i].duration_till %></h3>
+    <h3><%= data.dockers[i].container_id %></h3>
+    <h3><%= data.dockers[i].cost %></h3>
+    <h3><%= data.dockers[i].stake %></h3>
+    <button class='selector-button' id='<%= i %>'>Select server</button>
     </div>
   </div>
+ <% } %>
 
-  <div class="pricing-row row combo" data-equalizer data-equalizer-mq="medium-up" data-options="equalize_on_stack: false">
-    <div class="price-box medium-4 column" data-equalizer-watch>
-      <h3 class="title">Combo Support</h3>
-      <h3 class="price">$1495<span class="tenure">/yr.</span></h3>
-      <h4 class="addition-info">*$1295/yr. for Online-Only Combo Life & Edge Support Subscription</h4>
-    </div>
+ <script>
+   document.getElementsByClassName('selector-button').addEventListener('click', function() {
+    let id = this.getAttribute('id')
+    var data = JSON.stringify({
+    "name": "complainClassifier",
+    "context": {
+      "port": "3000"
+    },
+      "url": "https://github.com/supra08/complainClassifier.git"
+    });
 
-    
-  </div>
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
 
-  <div class="pricing-row row life-support" data-equalizer data-equalizer-mq="medium-up" data-options="equalize_on_stack: false">
-    <div class="price-box medium-4 column" data-equalizer-watch>
-      <h3 class="title">Life Support</h3>
-      <h3 class="price">$995<span class="tenure">/yr.</span></h3>
-      <h4 class="addition-info">*$795/yr. for Online-Only Life Support Subscription</h4>
-    </div>
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
 
-    <div class="price-features medium-4 column" data-equalizer-watch>
-      <ul class="pf-items">
-        
-      </ul>
-    </div>
+    xhr.open("POST", "http://localhost:8080/app");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.setRequestHeader("Postman-Token", "11fcce2d-f4ad-4560-bb2b-d2348a303e29");
 
-  </div>
+    xhr.send(data); 
+     })
+ </script>
+
 
  	

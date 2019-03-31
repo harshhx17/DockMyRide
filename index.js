@@ -50,7 +50,10 @@ app.post('/submit',(req, res) => {
 });
 
 app.get('/market_place', (req, res) => {
-    res.render('marketPlace');
+    dockerModel.fetchAll().then((data) => {
+        console.log(data)
+        res.render('marketPlace', {'data': data})
+    })
 })
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))

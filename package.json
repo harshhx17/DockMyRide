@@ -18,6 +18,8 @@
     "node-fetch": "^2.2.0",
     "nonce": "^1.0.4",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "maticjs": "1.0.0-beta.12",
+    "web3": "1.0.0-beta.34"
   }
 }

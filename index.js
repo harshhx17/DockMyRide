@@ -45,4 +45,8 @@ app.get('/register',(req, res) => {
     res.render('register');
 })
 
+app.get('/market_place', (req, res) => {
+    res.render('marketPlace');
+})
+
 app.listen(port, () => console.log(`App listening on port ${port}!`))

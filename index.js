@@ -39,10 +39,14 @@ app.post('/sel',(req, res) => {
 
 app.post('/buy',(req, res) => {
     buyerModel.insert(req, res);
-})
+});
 
 app.get('/register',(req, res) => {
     res.render('register');
-})
+});
+
+app.post('/submit',(req, res) => {
+    dockerModel.insert(req, res);
+});
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))

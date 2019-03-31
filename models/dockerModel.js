@@ -11,7 +11,7 @@ dockerModel.insert = function(req,res) {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            body: JSON.stringify({query: 'mutation {insert_docker_details(objects: [{ram: "'+ req.body['ram']+ '", size: "'+ req.body['size']+ '" , duration: '+ req.body['dur']+ ' , duration_from: "'+ req.body['dur_f']+ '" , duration_till: "'+ req.body['dur_t']+ '" , container_id: "'+ req.body['cont_id']+ '" , host_ip: "'+ req.body['host_ip']+ '" , host_port: "'+ req.body['host_port']+ '" , username: "'+ req.body['username']+ '" , cost: '+ req.body['cost']+ ' }]) {returning {id}}}'})
+            body: JSON.stringify({query: 'mutation {insert_docker_details(objects: [{ram: "'+ req.body['ram']+ '", size: "'+ req.body['size']+ '" , duration: '+ req.body['dur']+ ' , duration_from: "'+ req.body['dur_f']+ '" , duration_till: "'+ req.body['dur_t']+ '" , username: "'+ req.body['username']+ '" , cost: '+ req.body['cost']+ ', stake: '+ req.body['stake']+'}]) {returning {id}}}'})
         })
         .then(r => {
             return r.json()

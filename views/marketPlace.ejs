@@ -1,0 +1,231 @@
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+body {
+  background: #F2F2F2;
+  padding: 0;
+  maring: 0;
+}
+
+#price {
+  text-align: center;
+}
+
+.plan {
+  display: inline-block;
+  margin: 10px 1%;
+  font-family: 'Lato', Arial, sans-serif;
+  border: solid #4caf50;
+}
+
+.plan-inner {
+  background: #fff;
+  margin: 0 auto;
+  min-width: 280px;
+  max-width: 100%;
+  position:relative;
+}
+
+.entry-title {
+  background: #53CFE9;
+  height: 140px;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.entry-title>h3 {
+  background: #20BADA;
+  font-size: 20px;
+  padding: 5px 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0;
+}
+
+.entry-title .price {
+  position: absolute;
+  bottom: -25px;
+  background: #20BADA;
+  height: 95px;
+  width: 95px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 50px;
+  border: 5px solid #fff;
+  line-height: 80px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.price span {
+  position: absolute;
+  font-size: 9px;
+  bottom: -10px;
+  left: 30px;
+  font-weight: 400;
+}
+
+.entry-content {
+  color: #323232;
+}
+
+.entry-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.entry-content li {
+  border-bottom: 1px solid #E5E5E5;
+  padding: 10px 0;
+}
+
+.entry-content li:last-child {
+  border: none;
+}
+
+.btn {
+  padding: 3em 0;
+  text-align: center;
+}
+
+.btn a {
+  background: #323232;
+  padding: 10px 30px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none
+}
+.hot {
+    position: absolute;
+    top: -7px;
+    background: #F80;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    padding: 2px 5px;
+    font-size: 9px;
+    border-radius: 2px;
+    right: 10px;
+    font-weight: 700;
+}
+.basic .entry-title {
+  background: #4caf50;
+}
+
+.basic .entry-title > h3 {
+  background: #3d8e40;
+}
+
+.basic .price {
+  background: #44CBC6;
+}
+
+.standard .entry-title {
+  background: #3d8e40;
+}
+
+.standard .entry-title > h3 {
+  background: #3d8e40;
+}
+
+.standard .price {
+  background: #3d8e40;
+}
+
+.ultimite .entry-title > h3 {
+  background: #DD4B5E;
+}
+
+.ultimite .entry-title {
+  background: #F75C70;
+}
+
+.ultimite .price {
+  background: #DD4B5E;
+}
+</style>
+
+<div id="price">
+  <% for (var i=0; i < data.dockers.length; i++) { %> 
+  <div class="plan standard">
+    <div class="plan-inner">
+      <div class="entry-title">
+        <h3><%= data.dockers[i].ram %></h3>
+        <div class="price"><%= data.dockers[i].cost %> <span>Ether</span>
+        </div>
+      </div>
+      <div class="entry-content">
+        <ul>
+          <li><strong><%= data.dockers[i].ram %></strong> RAM</li>
+          <li><strong><%= data.dockers[i].duration %></strong> Days</li>
+          <li>From <%= data.dockers[i].duration_from %> </li>
+          <li> to <%= data.dockers[i].duration_till %></li>
+          <li><strong><%= data.dockers[i].stake %></strong> at stake.</li>
+        </ul>
+      </div>
+      <div class="btn">
+        <button class="selector-button" id='<%= data.dockers[i].id %>'>Select server</button>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <!-- end of price tab-->
+</div>
+
+<!-- <div class="lt-pricing row">
+  <div class="row pricing-header hide-for-small-only">
+    <div class="price-box medium-4 column">
+      <h3>Subscription</h3>
+    </div>
+
+    <div class="price-features medium-8 column">
+      <h3>Features</h3>
+    </div>
+  </div> -->
+      
+ <!-- <% for (var i=0; i < data.dockers.length; i++) { %>     
+  <div class="pricing-row row premium" data-equalizer="premium" data-options="equalize_on_stack: false">
+    <div class="price-box medium-4 column" data-equalizer-watch="premium">      
+		<h3><%= data.dockers[i].ram %></h3>
+    <h3><%= data.dockers[i].duration %></h3>
+    <h3><%= data.dockers[i].duration_from %></h3>
+    <h3><%= data.dockers[i].duration_till %></h3>
+    <h3><%= data.dockers[i].container_id %></h3>
+    <h3><%= data.dockers[i].cost %></h3>
+    <h3><%= data.dockers[i].stake %></h3>
+    <button class='selector-button' id='<%= i %>'>Select server</button>
+    </div>
+  </div>
+ <% } %> -->
+
+ <script>
+   for(var i=0;i< <%= data.dockers.length%>;i++){
+   document.getElementsByClassName('selector-button')[i].addEventListener('click', function() {
+      console.log(this);
+      let id = this.getAttribute('id');
+      fetch("http://172.20.54.158:8080/app", {
+        body: "{\n\t\"name\":\"complainClassifier\",\n\t\"context\": {\n\t\t\"port\": \"3000\"\n\t},\n\t\"url\": \"https://github.com/supra08/complainClassifier.git\"\n}",
+        headers: {
+          "Cache-Control": "no-cache",
+          "Content-Type": "application/json",
+          "Postman-Token": "65193d94-c8f7-4c22-ba5b-144ee76ca9b6"
+        },
+        method: "POST",
+        mode: "no-cors",
+      });
+      location.href = "/payment/?id=" + id;
+
+
+   })
+   }
+ </script>
+
+
+ 	

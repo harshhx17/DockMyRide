@@ -56,4 +56,10 @@ app.get('/market_place', (req, res) => {
     })
 })
 
+app.get('/q',(req, res) => {
+    dockerModel.fetchAll().then((data) => {
+        console.log(data)
+        res.render('addDocker', {'data': data})
+    })
+});
 app.listen(port, () => console.log(`App listening on port ${port}!`))

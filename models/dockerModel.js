@@ -28,5 +28,29 @@ dockerModel.insert = function(req,res) {
     });
     }
 
+dockerModel.fetchAll = function(){
+    return new Promise((resolve, reject) => {
+        fetch('https://supradock.herokuapp.com/v1alpha1/graphql', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({query:'{docker_details {ram, duration, duration_from, duration_till, container_id, cost, stake}}'})
+    })
+    .then(r => r.json())
+    .then(data => {
+        if(data['data']['docker_details'][0] != undefined){
+            console.log(data['data']['docker_details']);
+            var docker = {'dockers': data['data']['docker_details']}
+            resolve(docker);
+        }
+        else{
+            reject("Wrong Password");
+        }
+    });
+    });
+}
+
 
 module.exports = dockerModel;

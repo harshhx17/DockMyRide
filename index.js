@@ -44,11 +44,8 @@ app.get('/payment',(req, res) => {
     res.render('payment',{'id': id});
 });
 app.post('/pay',(req,res) => {
-	transfer.transact()
-	.then((hash) => {
-		hash=hash;
-		res.render('completed',{hash});
-	})
+	transfer.transact();
+	res.render('completed');
 })
 app.post('/sel',(req, res) => {
     sellerModel.insert(req, res);

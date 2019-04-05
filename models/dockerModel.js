@@ -20,7 +20,7 @@ dockerModel.insert = function(req,res) {
             return data["data"]["insert_docker_details"]["returning"][0]["id"];
         })
         .then((complain_id) => {
-            res.send("Your Complaint has been succesfully registered and your complain id is " + complain_id);
+            res.send("Your Docker has been created and your docker id is " + complain_id);
         })
         .catch((err) => {
             res.send("Error: "+ err);
